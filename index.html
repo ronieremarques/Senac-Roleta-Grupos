@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta de Grupos - Senac</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Tela de Créditos -->
+    <div id="credits-screen" class="credits-screen">
+        <div class="credits-content">
+            <h1>Desenvolvido por</h1>
+            <h2>Roniere Marques</h2>
+        </div>
+    </div>
+
+    <!-- Header Fixo -->
+    <header class="header">
+        <h1>Roleta de Grupos</h1>
+        <p>Desenvolvido por Roniere Marques</p>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Seção de Configuração -->
+        <section class="config-section">
+            <div class="names-section">
+                <h2>Tópicos (Opcional)</h2>
+                <textarea id="topics-input" class="name-input" placeholder="Digite os tópicos (um por linha ou separados por vírgula)"></textarea>
+                <h2>Nomes Alunos</h2>
+                <div id="names-container">
+                    <div class="name-group">
+                        <textarea class="name-input" placeholder="Digite os nomes (um por linha ou separados por vírgula)"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-section">
+                <label for="names-per-group-control">Quantidade em cada grupo:</label>
+                <div class="names-per-group-control" id="names-per-group-control">
+                    <button id="decrease-names-per-group" class="btn-small"><i class="fas fa-minus"></i></button>
+                    <span id="names-per-group-value">2</span>
+                    <button id="increase-names-per-group" class="btn-small"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <button id="draw-button" class="btn-primary"><i class="fas fa-dice-d6"></i> Sortear</button>
+        </section>
+
+        <!-- Seção de Resultados -->
+        <section id="results-section" class="results-section hidden">
+            <div class="results-header">
+                <h2><i class="fas fa-clipboard-list"></i> Resultados do Sorteio</h2>
+                <div class="results-buttons">
+                    <!-- Botão de Download (inicialmente oculto, mostrado após o sorteio) -->
+                    <button id="download-pdf" class="btn-secondary"><i class="fas fa-file-pdf"></i> Baixar Resultados em PDF</button>
+                    <!-- Botão de Copiar para Planilha -->
+                    <button id="copy-to-spreadsheet" class="btn-secondary"><i class="fas fa-copy"></i> Copiar para Planilha</button>
+                </div>
+            </div>
+            <div class="results-container">
+                <!-- Tabela de resultados será inserida aqui pelo JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Roniere Marques. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Modal de Confirmação -->
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Confirmação</h2>
+            <p id="modal-message"></p>
+            <div class="modal-buttons">
+                <button id="modal-confirm" class="btn-primary">Confirmar</button>
+                <button id="modal-cancel" class="btn-secondary hidden">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Skeleton -->
+    <div id="loading-skeleton" class="skeleton hidden">
+        <div class="skeleton-content"></div>
+    </div>
+
+    <!-- Elemento para notificações push/toast -->
+    <div id="push-notification" class="push-notification hidden"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
