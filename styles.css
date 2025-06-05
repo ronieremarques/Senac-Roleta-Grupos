@@ -1,0 +1,520 @@
+/* Variáveis de Cores */
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-color: #4a90e2;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --border-color: #404040;
+}
+
+/* Reset e Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important; /* Oculta o cursor padrão em todos os elementos por padrão */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tela de Créditos */
+.credits-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.credits-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.credits-content {
+    text-align: center;
+    animation: slideUp 1s ease-out;
+}
+
+.credits-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.credits-content h2 {
+    font-size: 3rem;
+    color: var(--accent-color);
+}
+
+/* Header */
+.header {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: var(--text-secondary);
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Seções */
+.config-section {
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.topics-section,
+.names-section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Inputs e Textareas */
+.topic-input,
+.name-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.name-input {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Botões */
+.btn-primary,
+.btn-secondary {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer !important; /* Manter cursor none */
+    font-size: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* Estilos para botões pequenos (usados no controle de nomes por grupo) */
+.btn-small {
+    padding: 0.5rem 1rem; /* Ajuste o padding para aumentar o tamanho */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer !important;
+    font-size: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+    background-color: var(--bg-primary); /* Mesma cor dos btn-secondary */
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); /* Mesma borda dos btn-secondary */
+}
+
+.btn-small:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-secondary); /* Cor de hover similar aos btn-secondary */
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+/* Skeleton Loading */
+.skeleton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.skeleton-content {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-primary) 50%, var(--bg-secondary) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 50%;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Animações */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Utilitários */
+.hidden {
+    display: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .config-section {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+}
+
+/* Efeito de Cursor */
+.cursor-effect {
+    cursor: none !important; /* Garante que o cursor personalizado não seja oculto */
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+    z-index: 9999;
+}
+
+.cursor-effect.active {
+    width: 40px;
+    height: 40px;
+    border-color: var(--success-color);
+}
+
+/* Personalização da barra de rolagem para Webkit browsers (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+    height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary); /* Cor de fundo da trilha */
+    border-radius: 10px; /* Bordas arredondadas na trilha */
+}
+
+/* O "polegar" da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color); /* Cor do "polegar" */
+    border-radius: 10px; /* Bordas arredondadas no "polegar" */
+    border: 3px solid var(--bg-secondary); /* Espaçamento entre o "polegar" e a trilha */
+}
+
+/* O "polegar" ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #5aacee; /* Cor ligeiramente mais clara ou diferente ao passar o mouse */
+}
+
+/* Estilos para a Tabela de Resultados */
+.results-table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+    color: var(--text-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%; /* Garante que a tabela tente ocupar 100% do container */
+    table-layout: auto; /* Permitir que o conteúdo determine a largura das colunas */
+    display: block; /* Necessário para a funcionalidade de arrastar e scroll */
+}
+
+/* Estilos para as linhas de grupo */
+.results-table tbody tr.group-row:nth-child(odd) {
+    background-color: #282828; /* Cor para linhas ímpares */
+}
+
+.results-table tbody tr.group-row:nth-child(even) {
+    background-color: #343434; /* Cor para linhas pares, ligeiramente diferente */
+}
+
+.results-table tbody tr.group-row:hover {
+    background-color: #444; /* Cor ao passar o mouse */
+}
+
+/* Container dos resultados para controlar o layout e rolagem */
+.results-container {
+    width: 100%; /* Garante que o container ocupe a largura total */
+    overflow-x: auto; /* Permite a rolagem horizontal quando o conteúdo exceder */
+    -webkit-overflow-scrolling: touch; /* Melhora a rolagem em dispositivos touch */
+}
+
+/* Estilos para as células e cabeçalhos da tabela */
+.results-table th,
+.results-table td {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    text-align: center;
+    min-width: 120px; /* Define uma largura mínima para as colunas */
+    word-break: break-word;
+}
+
+/* Estilos para as células vazias */
+.results-table td:empty::after {
+    content: '-';
+    color: var(--text-secondary);
+}
+
+/* Estilos para as colunas fixas (Tópico e Grupo) */
+.results-table th:nth-child(1),
+.results-table td:nth-child(1),
+.results-table th:nth-child(2),
+.results-table td:nth-child(2) {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--bg-secondary); /* Mantém o fundo no tema escuro */
+}
+
+.results-table th:nth-child(2),
+.results-table td:nth-child(2) {
+    left: 120px; /* Ajustar com base no min-width da primeira coluna */
+}
+
+/* Estilos para o cabeçalho da seção de resultados */
+.results-header {
+    display: flex;
+    justify-content: space-between; /* Espaça o título e os botões */
+    align-items: center;
+    margin-bottom: 1.5rem; /* Espaço entre o cabeçalho e a tabela */
+}
+
+.results-header h2 {
+    margin: 0; /* Remover margem padrão do h2 dentro deste container */
+}
+
+/* Container para os botões dentro do cabeçalho de resultados */
+.results-buttons {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    align-items: center; /* Alinhar verticalmente os botões dentro do seu container */
+}
+
+/* Estilos para os botões dentro do cabeçalho de resultados */
+.results-header .btn-secondary {
+    /* Remover margens fixas para confiar no gap e no flexbox */
+    margin: 0;
+}
+
+/* Estilo para a tabela quando está sendo arrastada */
+.results-table.active-drag {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* Estilos específicos para cabeçalhos de tabela */
+.results-table th {
+    background-color: var(--bg-secondary);
+    font-weight: bold;
+    text-transform: uppercase;
+    position: sticky;
+    z-index: 2; /* Aumentar o z-index para garantir que fiquem sobre as células */
+    background-color: #3a3a3a;
+}
+
+/* Controle de Nomes por Grupo */
+.names-per-group-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos do controle */
+}
+
+#names-per-group-control label {
+    /* Estes estilos parecem estar incorretos. Removendo-os. */
+}
+
+#names-per-group-control .names-per-group-control {
+    /* Estes estilos parecem estar incorretos. Removendo-os. */
+}
+
+.options-section label {
+    display: block; /* Garante que a margem inferior funcione */
+    margin-bottom: 10px; /* Adiciona espaço abaixo da label */
+}
+
+#names-per-group-value {
+    margin: 0 10px; /* Espaçamento ao redor do número */
+    font-size: 1.2rem; /* Opcional: aumentar um pouco o tamanho do número */
+    font-weight: bold;
+}
+
+/* Botão Sortear (Ajustar margem superior) */
+#draw-button {
+    margin-top: 20px; /* Aumenta a distância do elemento acima */
+}
+
+/* Estilos para notificações push/toast */
+.push-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-secondary); /* Cor de fundo escura */
+    color: var(--text-primary); /* Cor do texto clara */
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000; /* Garantir que fique acima de outros elementos */
+    opacity: 0; /* Inicialmente invisível */
+    visibility: hidden; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.push-notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Cores diferentes para sucesso e erro */
+.push-notification.success {
+    border-left: 5px solid var(--success-color);
+}
+
+.push-notification.error {
+    border-left: 5px solid var(--error-color);
+}
+
+/* Adicionar margem superior aos botões quando o header wrapping ocorrer */
+@media (max-width: 768px) { /* Exemplo de breakpoint, ajuste conforme necessário */
+    .results-header.flex-wrap .results-buttons {
+         margin-top: 10px; /* Espaço acima do grupo de botões quando quebra */
+         width: 100%; /* Ocupar largura total quando quebrar */
+         justify-content: flex-start; /* Alinhar à esquerda quando quebrar */
+    }
+    .results-header.flex-wrap .results-buttons .btn-secondary {
+        margin-top: 5px; /* Espaço entre botões na coluna quebrada */
+    }
+} 
