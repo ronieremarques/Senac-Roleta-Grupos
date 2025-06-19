@@ -44,6 +44,124 @@
                     <span id="names-per-group-value">2</span>
                     <button id="increase-names-per-group" class="btn-small"><i class="fas fa-plus"></i></button>
                 </div>
+                
+                <div class="switch-option">
+                    <label class="switch">
+                        <input type="checkbox" id="force-distribution-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="switch-label">Forçar distribuição de pessoas que faltam em grupos aleatórios</span>
+                </div>
+
+                <!-- Filtros de Sorteio -->
+                <div class="filtros-sorteio-section">
+                    <label class="filtros-label"><i class="fas fa-filter"></i> Filtro/Método de Sorteio:</label>
+                    <div class="filtros-list">
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="alfabetica">
+                            Ordem Alfabética
+                            <span class="filtro-tooltip">Distribui os nomes em ordem alfabética nos grupos.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="pares">
+                            Nomes Pares
+                            <span class="filtro-tooltip">Apenas nomes em posições pares da lista serão sorteados.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="impares">
+                            Nomes Ímpares
+                            <span class="filtro-tooltip">Apenas nomes em posições ímpares da lista serão sorteados.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="genero">
+                            Equilíbrio de Gênero (IA)
+                            <span class="filtro-tooltip">A IA detecta o gênero pelo nome e tenta equilibrar homens e mulheres nos grupos.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="tamanho">
+                            Tamanho do Nome
+                            <span class="filtro-tooltip">Distribui os nomes do menor para o maior (ou vice-versa) conforme o tamanho do nome.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="inicial">
+                            Inicial do Nome
+                            <span class="filtro-tooltip">Agrupa por letra inicial: A-M em um grupo, N-Z em outro.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="paridade">
+                            Paridade de Letras
+                            <span class="filtro-tooltip">Agrupa nomes com número par de letras em um grupo e ímpar em outro.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="palavras">
+                            Número de Palavras
+                            <span class="filtro-tooltip">Nomes compostos em um grupo, nomes simples em outro.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="reversa">
+                            Ordem Reversa
+                            <span class="filtro-tooltip">Inverte a lista antes de sortear.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="aleatorio" checked>
+                            Aleatório (Padrão)
+                            <span class="filtro-tooltip">Sorteio totalmente aleatório.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="genero_exclusivo">
+                            Grupos por Gênero Exclusivo
+                            <span class="filtro-tooltip">Homens só com homens, mulheres só com mulheres. A IA detecta o gênero e separa automaticamente.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="similaridade_nome">
+                            Similaridade de Nome (IA)
+                            <span class="filtro-tooltip">Agrupa pessoas com nomes parecidos (ex: começam igual ou rimam).</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="frequencia_participacao">
+                            Frequência de Participação
+                            <span class="filtro-tooltip">Evita colocar pessoas que já estiveram juntas em sorteios anteriores no mesmo grupo.</span>
+                        </label>
+                        <label class="filtro-radio">
+                            <input type="radio" name="filtro-sorteio" value="frequencia_letras">
+                            Frequência de Letras (IA)
+                            <span class="filtro-tooltip">Agrupa pessoas com nomes que têm letras mais comuns ou mais raras.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Analytics -->
+            <div id="analytics-section" class="analytics-section">
+                <h3><i class="fas fa-chart-bar"></i> Análise Prévia</h3>
+                <div class="analytics-content">
+                    <div class="analytics-item">
+                        <span class="analytics-label">Total de nomes:</span>
+                        <span id="total-names" class="analytics-value">0</span>
+                    </div>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Nomes por grupo:</span>
+                        <span id="names-per-group-display" class="analytics-value">2</span>
+                    </div>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Grupos completos estimados:</span>
+                        <span id="complete-groups" class="analytics-value">0</span>
+                    </div>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Pessoas restantes:</span>
+                        <span id="remaining-people" class="analytics-value">0</span>
+                    </div>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Total de grupos estimados:</span>
+                        <span id="total-groups" class="analytics-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics matemáticos e sugestões -->
+            <div id="analytics-math-section" class="analytics-math-section">
+                <h3><i class="fas fa-lightbulb"></i> Sugestões Matemáticas</h3>
+                <div id="analytics-math-content" class="analytics-math-content" style="color:var(--text-secondary); font-size:1rem;"></div>
             </div>
 
             <button id="draw-button" class="btn-primary"><i class="fas fa-dice-d6"></i> Sortear</button>
@@ -54,14 +172,30 @@
             <div class="results-header">
                 <h2><i class="fas fa-clipboard-list"></i> Resultados do Sorteio</h2>
                 <div class="results-buttons">
-                    <!-- Botão de Download (inicialmente oculto, mostrado após o sorteio) -->
+                    <button id="shuffle-groups-btn" class="btn-secondary"><i class="fas fa-random"></i> Sortear Ordem dos Grupos</button>
                     <button id="download-pdf" class="btn-secondary"><i class="fas fa-file-pdf"></i> Baixar Resultados em PDF</button>
-                    <!-- Botão de Copiar para Planilha -->
                     <button id="copy-to-spreadsheet" class="btn-secondary"><i class="fas fa-copy"></i> Copiar para Planilha</button>
                 </div>
             </div>
             <div class="results-container">
                 <!-- Tabela de resultados será inserida aqui pelo JS -->
+            </div>
+            
+            <!-- Seção de Líder Chefe -->
+            <!-- Removida, agora será integrada na tabela -->
+        </section>
+
+        <!-- Seção de Histórico -->
+        <section id="history-section" class="history-section">
+            <div class="history-header">
+                <h2><i class="fas fa-history"></i> Histórico de Sorteios</h2>
+                <button id="clear-history" class="btn-secondary"><i class="fas fa-trash"></i> Limpar Histórico</button>
+            </div>
+            <div id="history-container" class="history-container">
+                <!-- Histórico será carregado aqui -->
+            </div>
+            <div id="history-pagination" class="history-pagination" style="text-align:center; margin-top:1rem;">
+                <button id="history-next" class="btn-secondary" style="display:none;">Ver Mais</button>
             </div>
         </section>
     </main>
@@ -90,6 +224,23 @@
 
     <!-- Elemento para notificações push/toast -->
     <div id="push-notification" class="push-notification hidden"></div>
+
+    <!-- Botão flutuante do Chatbot -->
+    <button id="chatbot-fab" class="chatbot-fab" title="Abrir Chatbot IA">
+        <i class="fas fa-robot"></i>
+    </button>
+    <!-- Janela do Chatbot -->
+    <div id="chatbot-window" class="chatbot-window hidden">
+        <div class="chatbot-header">
+            <span><i class="fas fa-robot"></i> Albert Einstein QI 200</span>
+            <button id="chatbot-close" class="chatbot-close" title="Fechar"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages"></div>
+        <form id="chatbot-form" class="chatbot-form">
+            <textarea id="chatbot-input" class="chatbot-input" placeholder="Digite sua mensagem..." autocomplete="off" maxlength="1000" rows="1" style="resize:vertical; min-height:44px; max-height:120px;"></textarea>
+            <button type="submit" class="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
